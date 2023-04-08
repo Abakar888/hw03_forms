@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
 
-from posts.models import Post # Импортируем модель, чтобы связать с ней форму
+from posts.models import Post
 
 
 User = get_user_model()
@@ -23,12 +23,12 @@ class PostForm(forms.ModelForm):
         help_texts = {
             'text': 'Введите текст сообщения',
             'group': 'Выберите группу',
-        }       
+        }
         labels = {
             'text': 'Текст сообщения',
             'group': 'Группа',
         }
-        
+
         def clean(self):
             data = self.cleaned_data['text']
             if data == '':

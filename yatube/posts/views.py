@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 
 
-
 from .models import Post, Group
 from users.forms import PostForm
 
@@ -14,7 +13,7 @@ User = get_user_model()
 
 def index(request):
     post_list = Post.objects.all().order_by('-pub_date')
-    paginator = Paginator(post_list, POST_SEARCH) 
+    paginator = Paginator(post_list, POST_SEARCH)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -26,7 +25,7 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     post_list = Post.objects.select_related('author', 'group')
-    paginator = Paginator(post_list, POST_SEARCH) 
+    paginator = Paginator(post_list, POST_SEARCH)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -40,7 +39,7 @@ def profile(request, username):
     author = get_object_or_404(User, username=username)
     post_list = Post.objects.filter(author=author)
     count_posts = Post.objects.filter(author=author).count()
-    paginator = Paginator(post_list, POST_SEARCH) 
+    paginator = Paginator(post_list, POST_SEARCH)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
@@ -82,13 +81,13 @@ def post_edit(request, post_id):
 
     if post.author != request.user:
         return redirect(f'/profile/{post.author}')
-    
+
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save()
             return redirect('posts:post_detail', post_id)
-        
+
     else:
         form = PostForm(instance=post)
         context = {
