@@ -1,6 +1,7 @@
 import pytest
 from django import forms
-from posts.forms import PostForm
+from users.forms import PostForm # Вариант, пути я прописал (он работает при тестировании через pytest)
+# from posts.forms import PostForm Вариант, пути который был когда клонировал репозиторий (он не работает при тестировании через pytest)
 from posts.models import Post
 
 from tests.utils import get_field_from_context
