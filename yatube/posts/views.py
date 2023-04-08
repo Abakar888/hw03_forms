@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 
 
 from .models import Post, Group
-from users.forms import PostForm
+from .forms import PostForm
 
 POST_SEARCH = 10
 User = get_user_model()
