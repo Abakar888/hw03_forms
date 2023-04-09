@@ -1,13 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
-
-from posts.models import Post
-
-
-User = get_user_model()
+from posts.models import Post, User
 
 
 class CreationForm(UserCreationForm):
