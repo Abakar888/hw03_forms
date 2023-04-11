@@ -9,7 +9,7 @@ POST_SEARCH = 10
 
 
 def index(request):
-    post_list = Post.objects.all().order_by('-pub_date')
+    post_list = Post.objects.all()
     page_obj = paginator(post_list, POST_SEARCH, request)
     context = {
         'page_obj': page_obj,
